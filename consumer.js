@@ -1,7 +1,9 @@
 const { kafka } = require("./client")
 
+const groupId = process.argv[2] || "group-1";
+
 async function init(){
-    const consumer = kafka.consumer({ groupId: "user-1"});
+    const consumer = kafka.consumer({ groupId: groupId});
     await consumer.connect();
 
     await consumer.subscribe({topics: ["rider-updates"], fromBeginning: true});
